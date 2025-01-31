@@ -1,0 +1,89 @@
+<p-toast />
+<p-confirmDialog />
+<app-page-title-and-info pageMainTitle="List Of Facilities" pageMainInfo="List your facilities, view details, edit or delete.">
+</app-page-title-and-info>
+<div class="p-card p-fluid">
+
+    <h2 class="p-text-center p-mb-4">Facility List</h2>
+  
+    <p-table
+      [rowHover]="true"
+      [value]="facilities"
+      [lazy]="true"
+      [paginator]="true"
+      [rows]="10"
+      [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[10, 20, 50]"
+      [loading]="loading"
+      (onLazyLoad)="loadFacilities($event)"
+      [responsiveLayout]="'scroll'"
+      dataKey="id"
+      expandableRows
+    >
+      <!-- Tablonun Başlığı -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">Facility Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Created Date</th>
+          <th>Actions</th>
+          
+        </tr>
+      </ng-template>
+  
+      <!-- Tablonun Gövdesi -->
+      <ng-template pTemplate="body" let-facility>
+        <tr>
+          <td>{{ facility.name }}</td>
+          <td>{{ facility.type }}</td>
+          <td>{{ facility.email }}</td>
+          <td>{{ facility.city }}</td>
+          <td>{{ facility.country }}</td>
+          <td>{{ facility.createdDate }}</td>
+
+          <td>
+            <p-button
+            severity="success"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-info p-mr-2 action-button"
+              tooltip="View Details"
+              [routerLink]="['/facilities/facility-detail', facility.id]"
+              />
+            <p-button
+            severity="warning"
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-warning p-mr-2 action-button"
+              tooltip="Edit"
+              [routerLink]="['/facilities/edit-facility', facility.id]"
+              />
+           
+            
+            <p-button
+            
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger action-button"
+              tooltip="Delete"
+              (onClick)="confirm2($event)"  severity="danger"
+            />
+            
+          </td>
+        </tr>
+      </ng-template>
+  
+      <!-- Expandable Row Detayları -->
+      <ng-template pTemplate="rowexpansion" let-facility>
+        <div class="p-4">
+          <h4>Details for {{ facility.name }}</h4>
+          <p><strong>Type:</strong> {{ facility.type }}</p>
+          <p><strong>Email:</strong> {{ facility.email }}</p>
+          <p><strong>City:</strong> {{ facility.city }}</p>
+          <p><strong>Country:</strong> {{ facility.country }}</p>
+          <p><strong>Created Date:</strong> {{ facility.createdDate }}</p>
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  

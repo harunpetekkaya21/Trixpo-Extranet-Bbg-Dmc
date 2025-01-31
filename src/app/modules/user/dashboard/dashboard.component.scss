@@ -1,0 +1,108 @@
+
+
+
+
+
+.summary-container {
+  
+  border: dotted 2px #c9c6c6; /* Dotted border */
+  padding: 1rem; /* Spacing around content */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #ffffff; /* Slightly off-white background */
+  margin-bottom: 8px;
+}
+
+ /* Summary Cards */
+ .summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  min-width: 120px;
+}
+
+.summary-card i {
+  font-size: 1.5rem;
+}
+
+.summary-card .info h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.summary-card .info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.vacant {
+  border-left: 5px solid green;
+}
+
+.occupied {
+  border-left: 5px solid blue;
+}
+
+.blocked {
+  border-left: 5px solid orange;
+}
+
+/* Room Table */
+.room-table {
+  width: 100%;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.text-orange {
+  color: orange;
+}
+
+.announcement-container {
+  border-radius: 1rem;
+  background: linear-gradient(
+    0deg,
+    rgba(4, 70, 141, 0.5),
+    rgba(45, 138, 236, 0.5)
+  );
+  background: linear-gradient(
+    92.54deg,
+    #1853a0 47.88%,
+    #7f97bd 100.01%
+  );
+  position: relative; /* Close button için bağlam oluşturuyor */
+}
+
+.announcement-close-button {
+  position: absolute;
+  top: 0.5rem; /* Sağ üst hizalama */
+  right: 0.5rem; /* Sağdan hizalama */
+  background: none; /* Buton arka planı */
+  border: none; /* Buton çerçevesi */
+  cursor: pointer; /* El işareti */
+  font-size: 1.5rem; /* Çarpı boyutu */
+  outline: none; /* Fokus durumunda kenar kaldırıldı */
+  z-index: 10; /* Üstte görünmesi için */
+  color: rgb(77, 73, 73); /* Çarpı ikon rengi */
+}
+
+.announcement-close-button i {
+  font-size: 1.5rem;
+}
+
+.announcement-close-button:hover {
+  color: red; /* Hover durumunda kırmızı */
+}

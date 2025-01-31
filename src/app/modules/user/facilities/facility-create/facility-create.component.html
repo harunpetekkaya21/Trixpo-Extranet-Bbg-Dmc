@@ -1,0 +1,137 @@
+<!-- Bildirimler (Toast) -->
+<p-toast></p-toast>
+
+<!-- Sayfa Başlığı ve Açıklama -->
+<app-page-title-and-info pageMainTitle="Create New Facility" pageMainInfo="Create new facility">
+
+</app-page-title-and-info>
+
+<div class="card profile-card">
+  <form [formGroup]="formHotel">
+    <div class="profile-header">
+      <div class="logo-container">
+        <div class="logo-wrapper">
+          <img *ngIf="formHotel.get('logo')?.value" [src]="formHotel.get('logo')?.value" alt="Hotel Logo"
+            class="hotel-logo" />
+          <ng-container *ngIf="!formHotel.get('logo')?.value">
+            <div class="placeholder">Logo</div>
+          </ng-container>
+        </div>
+        <p-fileUpload name="logo" mode="basic" accept="image/*" [auto]="true" chooseLabel="Select Logo"
+          (uploadHandler)="onLogoUpload($event)"></p-fileUpload>
+      </div>
+      <button pButton label="Save" icon="pi pi-save" class="save-button" (click)="saveProfile()"></button>
+    </div>
+
+    <div class="profile-content grid">
+      <!-- General Info -->
+      <div class="col-12 md:col-4">
+        <div class="card">
+          <div class="mb-5">
+            <p-chip styleClass="custom-chip pl-2 p-3">
+              <span class="ml-2 font-bold">General Information</span>
+            </p-chip>
+          </div>
+          <div class="field">
+            <label for="name">Hotel Name</label>
+            <input id="name" type="text" pInputText formControlName="name" placeholder="Enter hotel name" />
+            <p-message *ngIf="isInvalid('name')" severity="error"
+              text="Hotel Name is required and must be at least 3 characters long"></p-message>
+          </div>
+
+          <div class="field">
+            <label for="title">Hotel Title</label>
+            <input id="title" type="text" pInputText formControlName="title" placeholder="Unvan" />
+            <p-message *ngIf="isInvalid('title')" severity="error"
+              text="Hotel title is required and must be at least 3 characters long"></p-message>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-12 md:col-4">
+        <div class="card">
+          <div class="mb-5">
+            <p-chip styleClass="custom-chip pl-2 p-3">
+              <span class="ml-2 font-bold">Contact Information</span>
+            </p-chip>
+          </div>
+
+          <div formGroupName="contact">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" type="text" pInputText formControlName="phone" placeholder="Phone number" />
+              <p-message *ngIf="isInvalid('contact.phone')" severity="error"
+                text="Phone number is required and must contain only numbers"></p-message>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="text" pInputText formControlName="email" placeholder="Email address" />
+              <p-message *ngIf="isInvalid('contact.email')" severity="error" text="Valid email is required"></p-message>
+            </div>
+            <div class="field">
+              <label for="address">Address</label>
+              <textarea id="address" pInputTextarea formControlName="address" rows="3" placeholder="Address"></textarea>
+              <p-message *ngIf="isInvalid('contact.address')" severity="error" text="Address is required"></p-message>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Info -->
+
+      <!-- Location Info -->
+      <div class="col-12 md:col-4">
+        <div class="card">
+          <div class="mb-5 flex justify-content-between align-items-center">
+            <p-chip styleClass="custom-chip pl-2 p-3">
+              <span class="ml-2 font-bold">Location Information</span>
+            </p-chip>
+
+            <!-- Harita Aç Butonu (Sağa Hizalı) -->
+
+            <!-- Open Map Butonu ve Yazısı -->
+            <div class="text-center flex flex-column align-items-center">
+              <span class="font-semibold mb-1">Open Map</span>
+              <button pButton icon="pi pi-map-marker" class="p-button-lg p-button-rounded p-button-primary"
+                (click)="openMapDialog()"></button>
+            </div>
+
+            
+          </div>
+
+          <div formGroupName="location">
+            <div class="field">
+              <label for="latitude">Latitude</label>
+              <input id="latitude" type="text" pInputText formControlName="latitude" placeholder="Latitude" />
+              <p-message *ngIf="isInvalid('location.latitude')" severity="error"
+                text="latitude is required and must contain only numbers"></p-message>
+            </div>
+            <div class="field">
+              <label for="longitude">Longitude</label>
+              <input id="longitude" type="text" pInputText formControlName="longitude" placeholder="Longitude" />
+              <p-message *ngIf="isInvalid('location.longitude')" severity="error"
+                text="latitude is required and must contain only numbers"></p-message>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>
+<!-- Harita Dialog -->
+<p-dialog [(visible)]="displayMapDialog" header="Select Location" [modal]="true" [closable]="true"
+  [style]="{width: '600px'}">
+  <div class="field">
+
+    <div class="p-inputgroup">
+      <input id="locationName" type="text" pInputText [(ngModel)]="locationName"
+        placeholder="Enter city or address..." />
+      <button pButton icon="pi pi-search" class="p-button-primary" (click)="searchLocation()"></button>
+    </div>
+  </div>
+  <div id="mapContainer" style="height: 400px;"></div>
+</p-dialog>

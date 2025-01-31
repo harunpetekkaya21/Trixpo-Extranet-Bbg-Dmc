@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'TRIXPO.Contract.Client.DMC' title`, () => {
+  it(`should have the 'TRIXPO.Contract.Client.Admin' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('TRIXPO.Contract.Client.DMC');
+    expect(app.title).toEqual('TRIXPO.Contract.Client.Admin');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, TRIXPO.Contract.Client.DMC');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, TRIXPO.Contract.Client.Admin');
   });
 });

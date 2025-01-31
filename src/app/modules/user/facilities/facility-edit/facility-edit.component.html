@@ -1,0 +1,81 @@
+<p-toast></p-toast>
+<div class="p-card p-fluid facility-card">
+  <!-- Başlık -->
+  <h2 class="p-text-center p-mb-4">Edit Facility</h2>
+
+  <form [formGroup]="facilityForm" (ngSubmit)="saveFacility()">
+    <!-- Basic Information FieldSet -->
+    <p-fieldset legend="Basic Information" toggleable>
+      <div class="p-grid p-formgrid">
+        <div class="p-col-12 p-md-6">
+          <label for="facilityName" class="p-text-bold">Facility Name</label>
+          <input
+            id="facilityName"
+            type="text"
+            pInputText
+            formControlName="facilityName"
+            tooltip="Enter the name of the facility (minimum 3 characters)"
+          />
+        </div>
+
+        <div class="p-col-12 p-md-6">
+          <label for="facilityType" class="p-text-bold">Facility Type</label>
+          <p-dropdown
+            id="facilityType"
+            [options]="[{ label: 'Hotel', value: 'Hotel' }, { label: 'Pension', value: 'Pension' }]"
+            formControlName="facilityType"
+            placeholder="Select a Type"
+          ></p-dropdown>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <!-- Security Information FieldSet -->
+    <p-fieldset legend="Security Information" toggleable>
+      <div class="p-grid p-formgrid">
+        <div class="p-col-12 p-md-6">
+          <label for="email" class="p-text-bold">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" />
+        </div>
+
+        <div class="p-col-12 p-md-6">
+          <label for="password" class="p-text-bold">Password</label>
+          <p-password formControlName="password" [feedback]="true"></p-password>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <!-- Address Information FieldSet -->
+    <p-fieldset legend="Address Information" toggleable>
+      <div class="p-grid p-formgrid">
+        <div class="p-col-12 p-md-6">
+          <label for="city" class="p-text-bold">City</label>
+          <input id="city" type="text" pInputText formControlName="city" />
+        </div>
+
+        <div class="p-col-12 p-md-6">
+          <label for="country" class="p-text-bold">Country</label>
+          <input id="country" type="text" pInputText formControlName="country" />
+        </div>
+
+        <div class="p-col-12">
+          <label for="address" class="p-text-bold">Address</label>
+          <textarea id="address" rows="3" pInputTextarea formControlName="address"></textarea>
+        </div>
+      </div>
+    </p-fieldset>
+
+
+
+
+    <div class="p-toolbar-group-right">
+      <button
+        pButton
+        label="Update Facility"
+        icon="pi pi-save"
+        class="p-button-primary"
+        type="submit"
+      ></button>
+    </div>
+  </form>
+</div>

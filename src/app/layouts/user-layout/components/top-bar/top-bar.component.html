@@ -1,0 +1,118 @@
+<div class="layout-topbar">
+
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="assets/logos/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-light'}}.svg"
+            alt="logo">
+        <span>DMC</span>
+    </a>
+
+
+    <!-- 3 Nokta -->
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button"
+        (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+
+
+
+    <div #topbarmenu class="layout-topbar-menu"
+        [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+
+        <!-- <div class="">
+            <p-menu appendTo="body" #menu [model]="items" [popup]="true" />
+            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
+        </div> -->
+
+
+        <!-- <app-avatar-profile></app-avatar-profile> -->
+       
+
+        <!-- Email Alanı -->
+        <div class="email-section">
+            <span class="email-text">dmc.mail.com</span>
+        </div>
+        <app-notification></app-notification>
+           <!-- Dil Seçim Alanı -->
+           <p-dropdown 
+           [options]="languages" 
+           [(ngModel)]="selectedLanguage"
+           optionLabel="name"
+           (onChange)="onLanguageChange($event)"
+           placeholder="Select Language">
+               <ng-template pTemplate="selectedItem">
+                   <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
+                       <img 
+                           src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                           [class]="'flag flag-' + selectedLanguage.code.toLowerCase()"
+                           style="width: 18px" />
+                       <div>{{ selectedLanguage.name }}</div>
+                   </div>
+               </ng-template>
+               <ng-template let-country pTemplate="item">
+                   <div class="flex align-items-center gap-2">
+                       <img 
+                           src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                           [class]="'flag flag-' + country.code.toLowerCase()" 
+                           style="width: 18px" />
+                       <div>{{ country.name }}</div>
+                   </div>
+               </ng-template>
+       </p-dropdown>
+        <!-- Avatar Alanı -->
+        <div class="avatar-section" (click)="toggleAvatarMenu($event)">
+            <p-avatar shape="circle" icon="pi pi-user" class="avatar" size="large" [style]="{ 'background-color': 'var(--primary-color)', color: '#fffff' }"></p-avatar>
+            <!-- Avatar Menüsü -->
+            <ul class="avatar-menu" *ngIf="isAvatarMenuVisible">
+                <li><a >Profile</a></li>
+                <li><a >Logout</a></li>
+            </ul>
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p-menubar [model]="items">
+            
+    <ng-template pTemplate="item" let-item>
+        sab menu -->
+<!-- <ng-container *ngIf="item.route; else urlRef">
+            <a [routerLink]="item.route" class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-container> -->
+<!-- sab menu -->
+
+<!-- without sublink -->
+<!-- <ng-template #urlRef>
+            <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-template> -->
+<!-- without sublink -->
+<!-- <ng-template #noLink>
+            <div class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+                <span class="pi pi-fw pi-angle-down ml-2"></span>
+            </div>
+        </ng-template>
+    </ng-template>
+</p-menubar> -->

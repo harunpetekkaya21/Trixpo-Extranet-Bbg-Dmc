@@ -1,0 +1,29 @@
+.page-main-title{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--page-main-title-color);
+    margin-bottom: 1.5rem;
+}
+
+.page-main-info{
+   
+
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    
+    border: 1px solid #e2e3e4;
+    border-radius: 8px;
+  
+    background-color: #ffffff;
+    
+    color: var(--blue-700);
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1.2rem;
+}
+
+.page-container{
+    margin-bottom: 1rem;
+}
